@@ -1,44 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base16.c                                 :+:      :+:    :+:   */
+/*   ft_decimal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rheringe <rheringe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 15:10:55 by rheringe          #+#    #+#             */
-/*   Updated: 2024/10/30 14:10:47 by rheringe         ###   ########.fr       */
+/*   Created: 2024/10/29 14:10:19 by rheringe          #+#    #+#             */
+/*   Updated: 2024/10/30 18:39:28 by rheringe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-unsigned int	ft_putnbr_base16(unsigned long n, char format, t_flags *flags)
+unsigned int	ft_decimal(unsigned int arg, t_flags *flags)
 {
-	char			*base;
-	unsigned int	len;
+	char				*convert_to_alpha;
+	unsigned int		len;
 
 	len = 0;
-	if (format == 'x')
+	if (flags->u)
+		convert_to_alpha = ft_utoa(arg);
+	else
+		convert_to_alpha = ft_itoa(arg);
+	if (flags->plus == 1 || flags->space == 1)
 	{
-		if (flags->hash == 1 && n != 0)
+		int	j;
+
+		j = 0;
+		if (convert_to_alpha[j] == '-')
 		{
-			len = ft_putstr_count("0x");
-			flags->hash = 0;
 		}
-		base = "0123456789abcdef";
-	}
-	if (format == 'X')
-	{
-		if (flags->hash == 1 && n != 0)
+		else if (flags->plus == 1)
 		{
-			len = ft_putstr_count("0X");
-			flags->hash = 0;
+			ft_putchar('+');
+			len = 1;
 		}
-		base = "0123456789ABCDEF";
+		else
+		{
+			ft_putchar(' ');
+			len = 1;
+		}
 	}
-	if (n >= 16)
-		len += ft_putnbr_base16(n / 16, format, flags);
-	len += ft_putchar(base[n % 16]);
+	ft_putstr_count(convert_to_alpha);
+	len += ft_strlen(convert_to_alpha);
+	free(convert_to_alpha);
 	return (len);
 }

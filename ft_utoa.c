@@ -1,18 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_utoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rheringe <rheringe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 15:41:40 by rheringe          #+#    #+#             */
-/*   Updated: 2024/10/29 11:36:06 by rheringe         ###   ########.fr       */
+/*   Created: 2024/10/29 13:56:53 by rheringe          #+#    #+#             */
+/*   Updated: 2024/10/30 18:38:26 by rheringe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-unsigned int	ft_putchar(int c)
+char	*ft_utoa(unsigned int n)
 {
-	return ((write(1, &c, 1)));
+	unsigned int		temp_n;
+	char				*str;
+	int					len;
+
+	temp_n = n;
+	len = 1;
+	while (temp_n /= 10)
+		len++;
+	str = (char *)malloc(len + 1);
+	if (!str)
+		return (NULL);
+	str[len] = '\0';
+	while (len--)
+	{
+		str[len] = n % 10 + '0';
+		n /= 10;
+	}
+	return (str);
 }
