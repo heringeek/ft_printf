@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rheringe <rheringe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/14 10:39:20 by rheringe          #+#    #+#             */
-/*   Updated: 2024/11/01 17:57:40 by rheringe         ###   ########.fr       */
+/*   Created: 2024/11/01 10:57:45 by rheringe          #+#    #+#             */
+/*   Updated: 2024/11/01 17:57:53 by rheringe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef FT_PRINTF_BONUS_H
+# define FT_PRINTF_BONUS_H
 
 # include <unistd.h>
 # include <stdarg.h>
@@ -20,6 +20,9 @@
 typedef struct flags {
 	unsigned int	u;
 	int				d;
+	int				hash;
+	int				plus;
+	int				space;
 }	t_flags;
 
 unsigned int	ft_putchar(int c);

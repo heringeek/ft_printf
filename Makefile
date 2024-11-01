@@ -6,59 +6,48 @@
 #    By: rheringe <rheringe@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/14 10:38:28 by rheringe          #+#    #+#              #
-#    Updated: 2024/10/29 18:40:26 by rheringe         ###   ########.fr        #
+#    Updated: 2024/11/01 16:03:33 by rheringe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	libftprintf.a
+CC = cc
 
-CC			=	cc
+CFLAGS = -Wall -Wextra -Werror
 
-CFLAGS		=	-Wall -Werror -Wextra
+NAME = libftprintf.a
 
-SRCS		=	ft_putchar.c \
-				ft_print_percent_sign.c \
-				ft_printf.c \
-				ft_putnbr_base16.c \
-				ft_utoa.c \
-				ft_decimal.c \
-				ft_capture_type.c \
-				ft_putstr_count.c
+MANDATORY_SRC = ft_printf.c \
+				ft_printf_utils.c \
+				ft_printf_utils2.c
 
-HEADER		=	ft_printf.h
+MANDATORY_OBJ = $(MANDATORY_SRC:%.c=%.o)
 
-LIBFT_DIR	=	../libft
-LIBFT		=	$(LIBFT_DIR)/libft.a
+BONUS_SRC = ft_printf_bonus.c \
+			ft_printf_utils_bonus.c \
+			ft_printf_utils2_bonus.c \
+			ft_printf_utils3_bonus.c
+ 
+BONUS_OBJ = $(BONUS_SRC:%.c=%.o)
 
-AR			=	ar rcs
+all: $(NAME)
 
-RM			=	rm -rf
+$(NAME): $(MANDATORY_OBJ)
 
-OBJS		=	${SRCS:.c=.o}
+%.o: %.c ft_printf.h 
+	$(CC) $(CFLAGS) -c $< -o $@
+	ar rcs $(NAME) $@
 
+bonus: $(BONUS_OBJ)
 
-all: ${NAME}
+norm:
+	norminette -R CheckForbiddenSourceHeader $(MANDATORY_SRC) $(BONUS_SRC) ft_printf.h ft_printf_bonus.h
 
-${LIBFT}:
-	@${MAKE} -C ${LIBFT_DIR}
-
-${NAME}: ${OBJS} ${LIBFT}
-	cp ${LIBFT} ${NAME}
-	${AR} ${NAME} ${OBJS}
-
-bonus: ${OBJS}
-
-%.o: %.c ${HEADER}
-	${CC} ${CFLAGS} -c $< -o $@
-
-clean:
-	${RM} ${OBJS}
-	@${MAKE} -C ${LIBFT_DIR} clean
+clean: 
+	rm -f $(MANDATORY_OBJ) $(BONUS_OBJ)
 
 fclean: clean
-	${RM} ${NAME}
-	@${MAKE} -C ${LIBFT_DIR} fclean
+	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
