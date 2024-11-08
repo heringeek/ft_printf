@@ -6,7 +6,7 @@
 /*   By: rheringe <rheringe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:39:20 by rheringe          #+#    #+#             */
-/*   Updated: 2024/11/01 17:57:40 by rheringe         ###   ########.fr       */
+/*   Updated: 2024/11/05 10:07:47 by rheringe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ unsigned int	ft_putstr_count(char *s);
 unsigned int	ft_putstr_aux(char *s);
 void			ft_putnbr(int n, int fd);
 void			ft_init_flags(t_flags *flags);
-void			ft_check_flag_bonus(const char *format, t_flags *flags);
 void			ft_putstr(char *s);
 char			*ft_utoa(unsigned int n);
 char			*ft_strchr(const char *str, int c);

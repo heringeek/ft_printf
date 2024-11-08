@@ -6,7 +6,7 @@
 /*   By: rheringe <rheringe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:47:34 by rheringe          #+#    #+#             */
-/*   Updated: 2024/11/01 17:30:36 by rheringe         ###   ########.fr       */
+/*   Updated: 2024/11/05 10:09:43 by rheringe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ void	ft_init_flags(t_flags *flags)
 
 //cc -w ft_printf_bonus.c ft_printf_bonus.h ft_printf_utils_bonus.c 
 //	ft_printf_utils2_bonus.c ft_printf_utils3_bonus.c
-//cc -w ft_printf.c ft_printf.h ft_printf_utils.c ft_printf_utils2.c
 // #include <stdio.h>
 // #include <limits.h>
 // int	main(void)
